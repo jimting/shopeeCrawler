@@ -1,3 +1,14 @@
+from selenium.webdriver import Chrome
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.common.by import By
+from bs4 import BeautifulSoup
+import time
+import os
+import pymysql.cursors
+import re
+
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import numpy as np
@@ -46,17 +57,6 @@ def shopee():
 
 # 取得頁面html資料
 def fetch_page(keyword = '', page = 0):
-    from selenium.webdriver import Chrome
-    from selenium.webdriver.chrome.options import Options
-    from selenium.webdriver.support.ui import WebDriverWait
-    from selenium.webdriver.support import expected_conditions
-    from selenium.webdriver.common.by import By
-    from bs4 import BeautifulSoup
-    import time
-    import os
-    import pymysql.cursors
-    import re
-
     options = Options()
     options.headless = True
     options.add_argument("--no-sandbox")
