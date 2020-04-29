@@ -1,6 +1,3 @@
-from selenium.webdriver import Chrome
-from selenium.webdriver.chrome.options import Options
-
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import numpy as np
@@ -49,7 +46,7 @@ def shopee():
 
 # 取得頁面html資料
 def fetch_page(keyword = '', page = 0):
-    from selenium import webdriver
+    from selenium.webdriver import Chrome
     from selenium.webdriver.chrome.options import Options
     from selenium.webdriver.support.ui import WebDriverWait
     from selenium.webdriver.support import expected_conditions
