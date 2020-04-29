@@ -1,14 +1,3 @@
-from selenium.webdriver import Chrome
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.common.by import By
-from bs4 import BeautifulSoup
-import time
-import os
-import pymysql.cursors
-import re
-
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import numpy as np
@@ -57,11 +46,38 @@ def shopee():
 
 # 取得頁面html資料
 def fetch_page(keyword = '', page = 0):
-    options = Options()
-    options.headless = True
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    driver = Chrome(chrome_options=options)
+    from selenium import webdriver
+    from selenium.webdriver.chrome.options import Options
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions
+    from selenium.webdriver.common.by import By
+    from bs4 import BeautifulSoup
+    import time
+    import os
+    import pymysql.cursors
+    import re
+
+    # 給 heroku 使用
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("window-size=1920,1080")
+    chrome_options.add_argument('--disable-gpu')
+    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+
+    # 本地開發使用
+    # options = Options()
+    # options.add_argument("window-size=1920,1080")
+    # options.add_argument("--headless")  # 不要開啟瀏覽器
+    # # options.add_argument('--no-sandbox')  # 以最高权限运行
+    # # 谷歌文档提到需要加上这个属性来规避bug
+    # options.add_argument('--disable-gpu')
+    # #设置不加载图片
+    # options.add_argument("blink-settings=imagesEnabled=false")
+    # driver = webdriver.Chrome('./chromedriver',options=options)
+    # driver.maximize_window()  # 瀏覽器視窗設為最大
 
     url = 'https://shopee.tw/search?keyword={0}&page={1}&sortBy=sales'.format(keyword, page)
     print('url = ', url)
