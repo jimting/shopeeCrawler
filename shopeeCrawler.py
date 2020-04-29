@@ -77,13 +77,13 @@ def shopeeSearch (keyword, page) :
 
 	# 頁面往下滑動
 	driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-	time.sleep(1)
+	time.sleep(5)
 
 	# 取得內容
 	result = driver.page_source
    
 	driver.close()
-	return result
+	return str(result)
 	
 def test() :
 	options = Options()
