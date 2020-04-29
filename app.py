@@ -61,10 +61,10 @@ def fetch_page(keyword = '', page = 0):
     import re
 
     options = Options()
-	options.headless = True
-	options.add_argument("--no-sandbox")
-	options.add_argument("--disable-dev-shm-usage")
-	driver = Chrome(chrome_options=options)
+    options.headless = True
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    driver = Chrome(chrome_options=options)
     driver = Chrome(chrome_options=options)
 
     url = 'https://shopee.tw/search?keyword={0}&page={1}&sortBy=sales'.format(keyword, page)
