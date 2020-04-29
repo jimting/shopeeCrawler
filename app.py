@@ -24,4 +24,4 @@ def test():
 
 
 if __name__ == '__main__':
-    app.run(host='sandbox.ddns.net:4101', debug=True)
+    app.run(host='0.0.0.0', debug=True)
