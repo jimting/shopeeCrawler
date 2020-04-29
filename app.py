@@ -11,10 +11,10 @@ def index():
     return data
 
 @app.route('/shopeeCrawler')
-def vmamv():
-    url = str(request.args.get('url'))
-    system_name = str(request.args.get('system_name'))
-    result = service.getURL(url,system_name)
+def shopeeCrawler():
+    keywords = str(request.args.get('keywords'))
+    page = str(request.args.get('page'))
+    result = service.shopeeSearch(keywords,page)
     return result
 
 @app.route('/test')

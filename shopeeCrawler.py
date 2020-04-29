@@ -53,7 +53,34 @@ def getURL (url, system_name) :
 	#const picUrl = await imgurUpload(text.replace("data:image/png;base64,",""));
 	
 	#return picUrl;
+	
+def shopeeSearch(keyword, page):
+    options = Options()
+	options.headless = True
+	options.add_argument("--no-sandbox")
+	options.add_argument("--disable-dev-shm-usage")
+	driver = Chrome(chrome_options=options)
 
+    url = 'https://shopee.tw/search?keyword={0}&page={1}&sortBy=sales'.format(keyword, page)
+    print('url = ', url)
+
+    driver.get(url)
+
+    # 等待選單內容出現
+    element = WebDriverWait(driver, 5).until(
+        expected_conditions.presence_of_element_located((By.CLASS_NAME, "shopee-search-item-result__item"))
+    )
+
+    # 頁面往下滑動
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    time.sleep(1)
+
+    # 取得內容
+	result = driver.page_source
+   
+    driver.close()
+    return result
+	
 def test() :
 	options = Options()
 	options.headless = True
