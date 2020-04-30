@@ -64,7 +64,7 @@ def crawler_shopee_product_info(keyword, page = 1):
 		
 		for article in articles:
 			try:
-				name = article.select('[data-sqe="name"]')[0].text
+				name = article.select('[data-sqe="name"] > div')[0].text
 				link = host + article.select('a')[0]['href']
 				#img = article.select('a > div > div > img')[0]['src']
 				sales_volume = '0' if article.select('[data-sqe="rating"]')[0].next_sibling.text == '' else article.select('[data-sqe="rating"]')[0].next_sibling.text
