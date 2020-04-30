@@ -13,19 +13,19 @@ import pandas as pd
 
 def shopeeSearch (keyword) :
 
-	shopee_product_ad = crawler_shopee_product_ad(keyword)
+	#shopee_product_ad = crawler_shopee_product_ad(keyword)
 	shopee_product_info = crawler_shopee_product_info(keyword)
 
-	for i in range(len(shopee_product_ad)):
-		product_ad = shopee_product_ad.iloc[i]['name']
+	for i in range(len(shopee_product_info)):
+		# product_ad = shopee_product_ad.iloc[i]['name']
 		shopee_product_info.loc[shopee_product_info['name'] == product_ad, 'ad'] = True
 	  
-	ad_num = len(shopee_product_ad)
-	print(keyword + '有 {} 個廣告'.format(ad_num))
+	#ad_num = len(shopee_product_ad)
+	# print(keyword + '有 {} 個廣告'.format(ad_num))
 	shopee_product_info['sales_volume'] = shopee_product_info['sales_volume'].astype('int')
 	shopee_product_info = shopee_product_info.sort_values(by='sales_volume', ascending=False)
 	shopee_product_info['key'] = range(1, len(shopee_product_info) + 1) # 增加 index 欄位
-	shopee_product_info['ad_num'] = ad_num
+	shopee_product_info['ad_num'] = 0
 
 	return shopee_product_info.to_json(orient='records', force_ascii=False)
 
