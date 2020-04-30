@@ -20,7 +20,7 @@ def shopeeSearch (keyword) :
 	#shopee_product_info['key'] = range(1, len(shopee_product_info) + 1) # 增加 index 欄位
 	#shopee_product_info['ad_num'] = 0
 
-	return shopee_product_info.to_json(orient='records', force_ascii=False)
+	return shopee_product_info
 
 def fetch_page (keyword, page) :
 	options = Options()
