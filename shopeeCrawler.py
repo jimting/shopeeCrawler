@@ -33,7 +33,8 @@ def fetch_page (keyword, page) :
 	print('url = ', url)
 
 	driver.get(url)
-
+	driver.maximize_window()
+	
 	# 等待選單內容出現
 	time.sleep(5)
 
