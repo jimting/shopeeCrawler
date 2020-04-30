@@ -43,7 +43,7 @@ def fetch_page (keyword, page) :
 
 # 設置爬取的關鍵字，及從第幾頁開始爬
 # 回傳商品 df
-def crawler_shopee_product_info(keyword, page = 1):
+def crawler_shopee_product_info(keyword, page = 20):
 	import pandas as pd
 	import re
 	
@@ -53,7 +53,9 @@ def crawler_shopee_product_info(keyword, page = 1):
 	for i in range(page):
 		soup = fetch_page(keyword, i)
 		articles = soup.select('[data-sqe="item"]')
-		
+		articles_len = len(articles)
+		if articles_len < 20 : 
+			break
 		for article in articles:
 			try:
 				name = article.select('[data-sqe="name"] > div')[0].text
