@@ -67,10 +67,7 @@ def get_article_arr(page_html):
         try:
             article = article.parent.parent.parent.parent.parent.parent  # 回到 .shopee-search-item-result__item 那層
             name = article.select('[data-sqe="name"]')[0].text
-            if len(article.select('[data-sqe="ad"]')) > 0
-				ad = True  
-			else 
-				ad = False
+            ad = True if len(article.select('[data-sqe="ad"]')) > 0 else False
             article_arr.append({
                 'name': name,
                 'ad': ad
