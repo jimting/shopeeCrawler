@@ -9,6 +9,7 @@ import time
 import base64
 import json
 import requests
+import pandas as pd
 
 def shopeeSearch (keyword) :
 
