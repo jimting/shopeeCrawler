@@ -60,7 +60,7 @@ def fetch_page (keyword, page) :
 def get_article_arr(page_html):
     article_arr = []
     host = 'https://shopee.tw'
-    ad_articles = page_html.select('[class="shopee-search-item-result__item"]')
+    ad_articles = page_html.select('[data-sqe="ad"]')
     ad_articles_len = len(ad_articles)
 
     for article in ad_articles:
@@ -105,13 +105,13 @@ def crawler_shopee_product_info(keyword, page = 1):
     host = 'https://shopee.tw'
     
     for i in range(page):
-        url = 'https://shopee.tw/search?keyword={0}&page={1}&sortBy=sales'.format(keyword, i)
-        print(url)
-        headers = {
-            'user-agent': 'Googlebot'
-        }
-        resp = requests.get(url, headers=headers) 
-        soup = BeautifulSoup(resp.text, 'lxml')
+		# url = 'https://shopee.tw/search?keyword={0}&page={1}&sortBy=sales'.format(keyword, i)
+        # print(url)
+        # headers = {
+        #    'user-agent': 'Googlebot'
+        # }
+        # resp = requests.get(url, headers=headers) 
+        soup = fetch_page(keyword, i)
 
         articles = soup.select('.shopee-search-item-result__item')
         for article in articles:
