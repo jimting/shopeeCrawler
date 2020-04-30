@@ -14,7 +14,7 @@ import pandas as pd
 def shopeeSearch (keyword) :
 
 	#shopee_product_ad = crawler_shopee_product_ad(keyword)
-	shopee_product_info = crawler_shopee_product_info(keyword)
+	shopee_product_info = crawler_shopee_product_ad(keyword)
 
 	# for i in range(len(shopee_product_info)):
 		# product_ad = shopee_product_ad.iloc[i]['name']
@@ -60,7 +60,7 @@ def fetch_page (keyword, page) :
 def get_article_arr(page_html):
 	article_arr = []
 	host = 'https://shopee.tw'
-	ad_articles = page_html.select('[data-sqe="ad"]')
+	ad_articles = page_html.select('[data-sqe="item"]')
 	ad_articles_len = len(ad_articles)
 
 	for article in ad_articles:
