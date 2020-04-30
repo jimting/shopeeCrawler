@@ -138,6 +138,9 @@ def crawler_shopee_product_info(keyword, page = 1):
 					'ad': False
 				})
 			except Exception as e:
+				article_arr.append({
+					'error': e
+				})
 				print(e)
 				print('---')
 
