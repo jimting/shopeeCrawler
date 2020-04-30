@@ -88,19 +88,6 @@ def crawler_shopee_product_info(keyword, page = 1):
 					'review': review,  # 評價
 					'ad': ad
 				})
-			"""except Exception as e:
-				article_arr.append({
-					'name': e,
-					'link': "沒有link",
-					#'img': "錯誤用的img-src",
-					'sales_volume': 999,  # 月銷售量
-					'price': 999,	 # 單價
-					'monthly_revenue': 999,	 # 月收加總
-					'review': 5,  # 評價
-					'ad': False
-				})
-				print(e)
-				print('---')"""
 
 	df = pd.DataFrame(article_arr, columns=['name', 'link', 'img', 'sales_volume', 'price', 'monthly_revenue', 'review', 'ad'])	 # 使用 columns 調整排列順序
 	return df
