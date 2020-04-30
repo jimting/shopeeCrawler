@@ -1,26 +1,19 @@
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
-
-import time
-import base64
-import json
 import requests
-import pandas as pd
+import time
 
 def shopeeSearch (keyword) :
 
 	shopee_product_info = crawler_shopee_product_info(keyword)
 
-	#shopee_product_info['sales_volume'] = shopee_product_info['sales_volume'].astype('int')
-	#shopee_product_info = shopee_product_info.sort_values(by='sales_volume', ascending=False)
-	#shopee_product_info['key'] = range(1, len(shopee_product_info) + 1) # 增加 index 欄位
-	#shopee_product_info['ad_num'] = 0
+	shopee_product_info['sales_volume'] = shopee_product_info['sales_volume'].astype('int')
+	shopee_product_info = shopee_product_info.sort_values(by='sales_volume', ascending=False)
+	shopee_product_info['key'] = range(1, len(shopee_product_info) + 1) # 增加 index 欄位
+	shopee_product_info['ad_num'] = 0
 
-	return shopee_product_info
+	return shopee_product_info.to_json(orient='records', force_ascii=False)
 
 def fetch_page (keyword, page) :
 	options = Options()
@@ -34,7 +27,7 @@ def fetch_page (keyword, page) :
 
 	driver.get(url)
 	driver.maximize_window()
-	
+
 	# 等待選單內容出現
 	time.sleep(5)
 
@@ -88,18 +81,8 @@ def crawler_shopee_product_info(keyword, page = 1):
 					'ad': ad
 				})
 			except Exception as e:
-				article_arr.append({
-					'name': e,
-					'link': str(article),
-					#'img': "錯誤用的img-src",
-					'sales_volume': 999,  # 月銷售量
-					'price': 999,	 # 單價
-					'monthly_revenue': 999,	 # 月收加總
-					'review': 5,  # 評價
-					'ad': False
-				})
 				print(e)
 				print('---')
 
-	#df = pd.DataFrame(article_arr, columns=['name', 'link', 'img', 'sales_volume', 'price', 'monthly_revenue', 'review', 'ad'])	 # 使用 columns 調整排列順序
-	return article_arr
+	df = pd.DataFrame(article_arr, columns=['name', 'link', 'img', 'sales_volume', 'price', 'monthly_revenue', 'review', 'ad'])	 # 使用 columns 調整排列順序
+	return df
