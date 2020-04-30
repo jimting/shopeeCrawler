@@ -60,14 +60,17 @@ def fetch_page (keyword, page) :
 def get_article_arr(page_html):
     article_arr = []
     host = 'https://shopee.tw'
-    ad_articles = page_html.select('[data-sqe="ad"]')
+    ad_articles = page_html.select('[class="shopee-search-item-result__item"]')
     ad_articles_len = len(ad_articles)
 
     for article in ad_articles:
         try:
             article = article.parent.parent.parent.parent.parent.parent  # 回到 .shopee-search-item-result__item 那層
             name = article.select('[data-sqe="name"]')[0].text
-            ad = True if len(article.select('[data-sqe="ad"]')) > 0 else False
+            if len(article.select('[data-sqe="ad"]')) > 0
+				ad = True  
+			else 
+				ad = False
             article_arr.append({
                 'name': name,
                 'ad': ad
