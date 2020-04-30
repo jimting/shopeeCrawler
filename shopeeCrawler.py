@@ -43,7 +43,7 @@ def fetch_page (keyword, page) :
 
 # 設置爬取的關鍵字，及從第幾頁開始爬
 # 回傳商品 df
-def crawler_shopee_product_info(keyword, page = 20):
+def crawler_shopee_product_info(keyword, page = 100):
 	import pandas as pd
 	import re
 	
@@ -54,7 +54,8 @@ def crawler_shopee_product_info(keyword, page = 20):
 		soup = fetch_page(keyword, i)
 		articles = soup.select('[data-sqe="item"]')
 		articles_len = len(articles)
-		if articles_len < 20 : 
+		if articles_len < 10 : 
+			print('last page')
 			break
 		for article in articles:
 			try:
