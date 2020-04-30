@@ -140,7 +140,7 @@ def crawler_shopee_product_info(keyword, page = 1):
 			except Exception as e:
 				article_arr.append({
 					'name': e,
-					'link': "錯誤用的link",
+					'link': article,
 					'img': "錯誤用的img-src",
 					'sales_volume': 999,  # 月銷售量
 					'price': 999,	 # 單價
