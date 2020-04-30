@@ -113,7 +113,7 @@ def crawler_shopee_product_info(keyword, page = 1):
 		# resp = requests.get(url, headers=headers) 
 		soup = fetch_page(keyword, i)
 
-		articles = soup.select('.shopee-search-item-result__item')
+		articles = soup.select('data-sqe="item"')
 		for article in articles:
 			try:
 				name = article.select('[data-sqe="name"]')[0].text
@@ -140,7 +140,7 @@ def crawler_shopee_product_info(keyword, page = 1):
 			except Exception as e:
 				article_arr.append({
 					'name': e,
-					'link': article,
+					'link': "沒有link",
 					'img': "錯誤用的img-src",
 					'sales_volume': 999,  # 月銷售量
 					'price': 999,	 # 單價
