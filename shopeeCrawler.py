@@ -80,7 +80,7 @@ def get_article_arr(page_html):
 
 # 設置爬取的關鍵字，及從第幾頁開始爬
 # 回傳商品 df
-def crawler_shopee_product_ad(keyword = '', page = 0):
+def crawler_shopee_product_ad(keyword, page = 0):
     is_fetch_next_page = True # 判斷是否繼續爬下一頁
     df_article_total_arr = pd.DataFrame([])
     
@@ -97,7 +97,7 @@ def crawler_shopee_product_ad(keyword = '', page = 0):
 
 # 設置爬取的關鍵字，及從第幾頁開始爬
 # 回傳商品 df
-def crawler_shopee_product_info(keyword = '', page = 1):
+def crawler_shopee_product_info(keyword, page = 1):
     import pandas as pd
     import re
     
