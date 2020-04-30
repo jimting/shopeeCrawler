@@ -66,7 +66,7 @@ def crawler_shopee_product_info(keyword, page = 1):
 			#try:
 				name = article.select('[data-sqe="name"]')[0].text
 				link = host + article.select('a')[0]['href']
-				img = article.select('img')[0]['src']
+				#img = article.select('img')[0]['src']
 				sales_volume = '0' if article.select('[data-sqe="rating"]')[0].next_sibling.text == '' else article.select('[data-sqe="rating"]')[0].next_sibling.text
 				sales_volume = re.findall(r'\d+', sales_volume)[0]
 				review = len(article.select('.shopee-rating-stars__stars .shopee-rating-stars__star-wrapper'))
@@ -81,7 +81,7 @@ def crawler_shopee_product_info(keyword, page = 1):
 				article_arr.append({
 					'name': name,
 					'link': link,
-					'img': img,
+					#'img': img,
 					'sales_volume': sales_volume,  # 月銷售量
 					'price': price,	 # 單價
 					'monthly_revenue': monthly_revenue,	 # 月收加總
