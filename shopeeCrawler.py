@@ -36,7 +36,7 @@ def fetch_page (keyword, page) :
 	options.add_argument("--disable-dev-shm-usage")
 	driver = Chrome(chrome_options=options)
 
-	url = "https://shopee.tw/search?keyword="+keyword+"&page="+page+"&sortBy=sales"
+	url = 'https://shopee.tw/search?keyword={0}&page={1}&sortBy=sales'.format(keyword, page)
 	print('url = ', url)
 
 	driver.get(url)
