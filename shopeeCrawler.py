@@ -35,9 +35,7 @@ def fetch_page (keyword, page) :
 	driver.get(url)
 
 	# 等待選單內容出現
-	element = WebDriverWait(driver, 5).until(
-		expected_conditions.presence_of_element_located((By.CLASS_NAME, "shopee-search-item-result__item"))
-	)
+	time.sleep(5)
 
 	# 頁面往下滑動
 	driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
