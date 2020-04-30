@@ -16,9 +16,9 @@ def shopeeSearch (keyword) :
 	#shopee_product_ad = crawler_shopee_product_ad(keyword)
 	shopee_product_info = crawler_shopee_product_info(keyword)
 
-	for i in range(len(shopee_product_info)):
+	# for i in range(len(shopee_product_info)):
 		# product_ad = shopee_product_ad.iloc[i]['name']
-		shopee_product_info.loc[shopee_product_info['name'] == product_ad, 'ad'] = True
+		# shopee_product_info.loc[shopee_product_info['name'] == product_ad, 'ad'] = True
 	  
 	#ad_num = len(shopee_product_ad)
 	# print(keyword + '有 {} 個廣告'.format(ad_num))
