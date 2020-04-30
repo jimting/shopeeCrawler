@@ -15,10 +15,10 @@ def shopeeSearch (keyword) :
 
 	shopee_product_info = crawler_shopee_product_info(keyword)
 
-	shopee_product_info['sales_volume'] = shopee_product_info['sales_volume'].astype('int')
-	shopee_product_info = shopee_product_info.sort_values(by='sales_volume', ascending=False)
-	shopee_product_info['key'] = range(1, len(shopee_product_info) + 1) # 增加 index 欄位
-	shopee_product_info['ad_num'] = 0
+	#shopee_product_info['sales_volume'] = shopee_product_info['sales_volume'].astype('int')
+	#shopee_product_info = shopee_product_info.sort_values(by='sales_volume', ascending=False)
+	#shopee_product_info['key'] = range(1, len(shopee_product_info) + 1) # 增加 index 欄位
+	#shopee_product_info['ad_num'] = 0
 
 	return shopee_product_info.to_json(orient='records', force_ascii=False)
 
@@ -101,5 +101,5 @@ def crawler_shopee_product_info(keyword, page = 1):
 				print(e)
 				print('---')
 
-	df = pd.DataFrame(article_arr, columns=['name', 'link', 'img', 'sales_volume', 'price', 'monthly_revenue', 'review', 'ad'])	 # 使用 columns 調整排列順序
-	return df
+	#df = pd.DataFrame(article_arr, columns=['name', 'link', 'img', 'sales_volume', 'price', 'monthly_revenue', 'review', 'ad'])	 # 使用 columns 調整排列順序
+	return article_arr
