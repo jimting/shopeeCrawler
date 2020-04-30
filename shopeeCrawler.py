@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 
 import time
 import base64
+import xmltodict
 import json
 import requests
 
@@ -81,9 +82,11 @@ def shopeeSearch (keyword, page) :
 
 	# 取得內容
 	result = driver.page_source
-   
+	my_dict=xmltodict.parse(result)
+	json_data=json.dumps(my_dict)
+	print(json_data)
 	driver.close()
-	return str(result)
+	return json_data
 	
 def test() :
 	options = Options()
