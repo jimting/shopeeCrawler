@@ -113,7 +113,7 @@ def crawler_shopee_product_info(keyword, page = 1):
 		# resp = requests.get(url, headers=headers) 
 		soup = fetch_page(keyword, i)
 
-		articles = soup.select('data-sqe="item"')
+		articles = soup.select('[data-sqe="item"]')
 		for article in articles:
 			try:
 				name = article.select('[data-sqe="name"]')[0].text
