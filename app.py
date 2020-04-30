@@ -13,14 +13,9 @@ def index():
 @app.route('/shopeeCrawler')
 def shopeeCrawler():
     keywords = str(request.args.get('keywords'))
-    page = str(request.args.get('page'))
-    result = service.shopeeSearch(keywords,page)
+    result = service.shopeeSearch(keywords)
     return result
 
-@app.route('/test')
-def test():
-    result = service.test()
-    return result
 
 
 if __name__ == '__main__':

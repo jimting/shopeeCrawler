@@ -10,55 +10,6 @@ import base64
 import json
 import requests
 
-def getURL (url, system_name) :
-	options = Options()
-	options.headless = True
-	options.add_argument("--no-sandbox")
-	options.add_argument("--disable-dev-shm-usage")
-	driver = Chrome(chrome_options=options)
-	driver.get(url)
-	driver.maximize_window()
-	driver.find_element_by_xpath("//button[@id='systemsDropdownMenuButton']").click()
-	time.sleep(1)
-	
-	driver.find_element_by_xpath("//button[@value='"+system_name+"']").click()
-	print("<< Select the "+system_name+" and show the graph!\n")
-	
-	time.sleep(2)
-	
-	driver.find_element_by_xpath("//button[@id='reduce_SVG']").click()
-	time.sleep(1)
-	driver.find_element_by_xpath("//button[@id='reduce_SVG']").click()
-	time.sleep(1)
-	driver.find_element_by_xpath("//button[@id='reduce_SVG']").click()
-	time.sleep(1)
-	driver.find_element_by_xpath("//button[@id='reduce_SVG']").click()
-	time.sleep(1)
-	driver.find_element_by_xpath("//button[@id='reduce_SVG']").click()
-	time.sleep(1)
-	print("<< Change the canvas scale.\n")
-	
-	time.sleep(2)
-	
-	driver.find_element_by_xpath("//button[@id='system-options-menu-button']/span").click()
-	print("<< Open the hambur list.\n")
-	
-	time.sleep(4)
-  
-	driver.find_element_by_xpath("//a[@id='download-graph']").click()
-	print("<< Click the download button.\n")
-	
-	time.sleep(2)
-	
-	text = driver.find_element_by_xpath("//a[@id='download-graph']").get_attribute("href")
-	print(">> Get the href.\n")
-	picUrl = imgur_upload(text.replace("data:image/png;base64,",""))
-	driver.quit()
-	return '{"url" : "' + picUrl + '"}'
-	#const picUrl = await imgurUpload(text.replace("data:image/png;base64,",""));
-	
-	#return picUrl;
-	
 def shopeeSearch (keyword) :
 
     shopee_product_ad = crawler_shopee_product_ad(keyword)
