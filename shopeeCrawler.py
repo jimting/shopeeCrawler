@@ -1,5 +1,6 @@
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.options import Options
+from fake_useragent import UserAgent
 from bs4 import BeautifulSoup
 import requests
 import time
@@ -15,31 +16,20 @@ def shopeeSearch (keyword) :
 
 	return shopee_product_info.to_json(orient='records', force_ascii=False)
 
-def fetch_page (keyword, page) :
-	options = Options()
-	options.headless = True
-	options.add_argument("--no-sandbox")
-	options.add_argument("--disable-dev-shm-usage")
-	driver = Chrome(chrome_options=options)
+def fetch_page(keyword, page):
+  url = 'https://shopee.tw/search?keyword='+keyword+"&page="+str(page)
+  headers = {
+      'User-Agent': 'Googlebot',
+      'From': ''
+  }
 
-	url = 'https://shopee.tw/search?keyword={0}&page={1}&sortBy=sales'.format(keyword, page)
-	print('url = ', url)
+  r = requests.get(url,headers=headers,allow_redirects=True)
+  print(r.status_code)
+  print(r.history)
+  print(r.url)
 
-	driver.get(url)
-	driver.maximize_window()
-
-	# 等待選單內容出現
-	time.sleep(5)
-
-	# 頁面往下滑動
-	driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-	time.sleep(5)
-
-	# 取得內容
-	soup = BeautifulSoup(driver.page_source, 'lxml')
-	
-	driver.close()
-	return soup
+  soup = BeautifulSoup(r.text, 'html.parser')
+  return soup
 
 # 設置爬取的關鍵字，及從第幾頁開始爬
 # 回傳商品 df
