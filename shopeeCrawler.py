@@ -118,8 +118,7 @@ def deep_crawler_shopee_product_info(keyword, page = 100):
 					price = (int(price.split(' - ')[0]) + int(price.split(' - ')[1])) / 2
 				monthly_revenue = float(sales_volume) * float(price)
 				
-				if(!ad) #直接把廣告過濾掉，因為沒有用QQ
-				{
+				if !ad : #直接把廣告過濾掉，因為沒有用QQ
 					article_arr.append({
 						'name': name,
 						'link': link,
@@ -130,7 +129,6 @@ def deep_crawler_shopee_product_info(keyword, page = 100):
 						'review': review,  # 評價
 						'ad': ad
 					})
-				}
 			except Exception as e:
 				print(e)
 				print('---')
