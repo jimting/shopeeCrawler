@@ -17,7 +17,7 @@ def shopeeSearch (keyword) :
 	return shopee_product_info.to_json(orient='records', force_ascii=False)
 
 def fetch_page(keyword, page):
-  url = 'https://shopee.tw/search?keyword='+keyword+"&page="+str(page)
+  url = 'https://shopee.tw/search?keyword='+keyword+"&page="+str(page)+"&sortBy=ctime"
   headers = {
       'User-Agent': 'Googlebot',
       'From': ''
@@ -33,7 +33,7 @@ def fetch_page(keyword, page):
 
 # 設置爬取的關鍵字，及從第幾頁開始爬
 # 回傳商品 df
-def crawler_shopee_product_info(keyword, page = 100):
+def crawler_shopee_product_info(keyword, page = 20):
 	import pandas as pd
 	import re
 	
