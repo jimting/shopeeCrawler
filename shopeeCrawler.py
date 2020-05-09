@@ -46,7 +46,7 @@ def fetch_page(keyword, page):
 
 # 設置爬取的關鍵字，及從第幾頁開始爬
 # 回傳商品 df
-def crawler_shopee_product_info(keyword, page = 20):
+def crawler_shopee_product_info(keyword, page = 40):
 	article_arr = []
 	host = 'https://shopee.tw'
 	
@@ -54,6 +54,9 @@ def crawler_shopee_product_info(keyword, page = 20):
 		soup = fetch_page(keyword, i)
 		articles = soup.select('[data-sqe="item"]')
 		articles_len = len(articles)
+		if articles_len == 0 : 
+			print('last page')
+			break
 		for article in articles:
 			try:
 				name = article.select('[data-sqe="name"] > div')[0].text
