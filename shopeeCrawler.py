@@ -54,9 +54,6 @@ def crawler_shopee_product_info(keyword, page = 20):
 		soup = fetch_page(keyword, i)
 		articles = soup.select('[data-sqe="item"]')
 		articles_len = len(articles)
-		if articles_len < 10 : 
-			print('last page')
-			break
 		for article in articles:
 			try:
 				name = article.select('[data-sqe="name"] > div')[0].text
