@@ -64,14 +64,14 @@ def crawler_shopee_product_info(keyword, page = 100):
 				sales_volume = '0' if article.select('[data-sqe="rating"]')[0].next_sibling.text == '' else article.select('[data-sqe="rating"]')[0].next_sibling.text
 				sales_volume = re.findall(r'\d+', sales_volume)[0]
 				review = len(article.select('.shopee-rating-stars__stars .shopee-rating-stars__star-wrapper'))
-				price = article.select('[data-sqe="name"]')[0].next_sibling.text.replace('$', '').replace(',', '')
+				price = article.select('[data-sqe="name"]')[0].next_sibling.text
 				ad = False
 				#print(str(article))
 				if article.select('[data-sqe="ad"]'): 
 					ad = True 
-				if len(price.split(' - ')) != 1:
-					price = (int(price.split(' - ')[0]) + int(price.split(' - ')[1])) / 2
-				monthly_revenue = float(sales_volume) * float(price)
+				#if len(price.split(' - ')) != 1:
+				#	price = (int(price.split(' - ')[0]) + int(price.split(' - ')[1])) / 2
+				#monthly_revenue = float(sales_volume) * float(price)
 				if ad == False : #直接把廣告過濾掉，因為沒有用QQ
 					article_arr.append({
 						'name': name,
@@ -79,7 +79,7 @@ def crawler_shopee_product_info(keyword, page = 100):
 						'img': img,
 						'sales_volume': sales_volume,  # 月銷售量
 						'price': price,	 # 單價
-						'monthly_revenue': monthly_revenue,	 # 月收加總
+						#'monthly_revenue': monthly_revenue,	 # 月收加總
 						'review': review,  # 評價
 						'ad': ad
 					})
@@ -87,5 +87,5 @@ def crawler_shopee_product_info(keyword, page = 100):
 				print(e)
 				print('---')
 
-	df = pd.DataFrame(article_arr, columns=['name', 'link', 'img', 'sales_volume', 'price', 'monthly_revenue', 'review', 'ad'])	 # 使用 columns 調整排列順序
+	df = pd.DataFrame(article_arr, columns=['name', 'link', 'img', 'sales_volume', 'price', 'review', 'ad'])	 # 使用 columns 調整排列順序
 	return df
