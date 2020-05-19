@@ -45,7 +45,7 @@ def fetch_page(keyword, page):
 
 # 設置爬取的關鍵字，及從第幾頁開始爬 (抓前五頁新的就好XD)
 # 回傳商品 df
-def crawler_shopee_product_info(keyword, page = 5):
+def crawler_shopee_product_info(keyword, page = 3):
 	article_arr = []
 	host = 'https://shopee.tw'
 	
