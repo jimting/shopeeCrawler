@@ -69,9 +69,6 @@ def crawler_shopee_product_info(keyword, page = 3):
 				#print(str(article))
 				if article.select('[data-sqe="ad"]'): 
 					ad = True 
-				#if len(price.split(' - ')) != 1:
-				#	price = (int(price.split(' - ')[0]) + int(price.split(' - ')[1])) / 2
-				#monthly_revenue = float(sales_volume) * float(price)
 				if ad == False : #直接把廣告過濾掉，因為沒有用QQ
 					article_arr.append({
 						'name': name,
@@ -79,7 +76,6 @@ def crawler_shopee_product_info(keyword, page = 3):
 						'img': img,
 						'sales_volume': sales_volume,  # 月銷售量
 						'price': price,	 # 單價
-						#'monthly_revenue': monthly_revenue,	 # 月收加總
 						'review': review,  # 評價
 						'ad': ad
 					})
