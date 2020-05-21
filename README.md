@@ -9,6 +9,7 @@
 ---
 
 蝦皮的商品百百種，是否有個商品你每天都要查他？(例如最近的Switch)
+
 **找看有沒有人上傳新商品這件事情，實在是太麻煩惹**
 
 ### 動機：寫一個自動幫我看有沒有人上傳新商品的爬蟲api
@@ -75,6 +76,8 @@ sudo docker run -d --name shopee_crawler -e "TZ=Asia/Taipei" -p 你想要的對�
 ```
 
 **看到佈署完成就可以用惹**
+
+api : 你的url:你的port/shopeeCrawler?keywords=你想搜尋的東東
 
 ---
 
