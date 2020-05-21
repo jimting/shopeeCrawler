@@ -1,6 +1,3 @@
-from selenium.webdriver import Chrome
-from selenium.webdriver.chrome.options import Options
-from fake_useragent import UserAgent
 from bs4 import BeautifulSoup
 
 import pandas as pd
